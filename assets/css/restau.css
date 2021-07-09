@@ -1,0 +1,120 @@
+.connect-form fieldset {
+    flex-basis : 100%;
+}
+
+.connect-form div {
+    display :flex;
+    flex-direction:row;
+    justify-content:unset;
+}
+
+input#remember{
+    
+	font-size: 2em;
+	cursor: pointer; 
+	width:unset;
+	margin-left: 10px;
+    margin-top: 6px;
+    
+}
+
+
+/* modal */
+.displayModal {
+    display: none;
+}
+
+.modal {
+    text-align: center;
+    padding: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    height: 180px;
+    border-radius: 1.3rem;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    font-size: 3rem;
+    z-index: 100;
+}
+
+.modal button {
+    margin: auto;
+    width: 80px;
+    padding: 0.8rem;
+    background: #fff;
+    color: #111;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+
+/* SHOPCART */
+div#filledcard{
+    display: flex;
+    flex-direction :column;
+}
+
+div#filledcard table {
+  border-collapse: collapse;
+  margin : 0 auto;
+}
+
+div#filledcard td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: left;
+  width : 180px;
+}
+
+div#filledcard th {
+    background-color: #ebe3db;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+.btn-style-blue,.btn-style-red{
+    text-align:center;
+    margin:20px auto 10px!important;
+    width: 250px;
+    color: aliceblue;
+    background: #0365D6;
+    border-radius: 15px;
+    border: 0;
+    text-decoration:none;
+    font-size:10px;
+}
+
+.btn-style-blue{
+    background: #0365D6;
+    padding: 5px 75px;
+}
+
+.btn-style-red{
+    background: red;
+    padding: 6px 75px;
+    cursor :pointer;
+}
+
+.btn-style-blue:hover,.btn-style-red:hover{
+    opacity : 0.8;
+}
+
+.amount-div div{
+    display: flex;
+    justify-content: space-around;
+}
+
+#totalAmount{
+    text-align:center;
+    margin-top : 2rem;
+}
+
+
+/* ÂIEMENT FORM */
+#paiement-form *{
+    display:block;
+}
