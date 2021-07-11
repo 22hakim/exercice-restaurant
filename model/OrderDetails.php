@@ -5,16 +5,20 @@ namespace App\model;
 use App\core\Connect;
 
 
-class OrderDetails extends Connect {
+class OrderDetails extends Connect 
+{
     
     protected $_pdo;
     
-    public function __construct(){
+    public function __construct()
+    {
         
         $this->_pdo = $this->connexion();
     }
     
-    
+    /**
+     * add order Details in DB
+     */
     public function addOrderDetail(array $data)
     {
 
@@ -23,7 +27,6 @@ class OrderDetails extends Connect {
         $q = $this->_pdo->prepare($sql);
         
         $q->execute([
-            
                     ':order_id' => $data['order_id'],
                     ':product_id' => $data['product_id'],
                     ':quantity' => $data['quantity'],
@@ -32,27 +35,11 @@ class OrderDetails extends Connect {
                     
         return $data;
                     
-
-
-    }
-    
-    public function recupPriceProduct(int $idProduct){
-        
-        $sql="SELECT `ref`, `price` FROM `product` WHERE `ref` = :productId";
-        $q = $this->_pdo->prepare($sql);
-        
-        $q->execute([
-                    ':productId' => $idProduct
-                    ]);
-                    
-        $value = $q->fetch(\PDO::FETCH_ASSOC); 
-        
-        return $value['price'];
-        
-        
     }
 
-
+    /**
+     * Recup order Details
+     */
     public function recupOrderDetail(int $orderId)
     {
 
@@ -68,5 +55,23 @@ class OrderDetails extends Connect {
         return $q->fetchAll(\PDO::FETCH_ASSOC);
         
     }
+    
+    /**
+     * method that recup product detail price called in addOrderDetail 
+     */
+    public function recupPriceProduct(int $idProduct)
+    {
+        
+        $sql="SELECT `ref`, `price` FROM `product` WHERE `ref` = :productId";
+        $q = $this->_pdo->prepare($sql);
+        
+        $q->execute([   ':productId' => $idProduct  ]);
+        $value = $q->fetch(\PDO::FETCH_ASSOC); 
+        
+        return $value['price'];
+        
+    }
+
+
 
 }

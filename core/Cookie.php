@@ -2,14 +2,18 @@
 
 namespace App\core;
 
-
+/**
+ * Method using $_COOKIE
+ */ 
 class Cookie{
     
-
-    public static function deleteCookie(array $cookies) :void{
-        // var_dump($cookies);
+    /**
+     * delete all cookies called 
+     */ 
+    public static function deleteCookie(array $cookies) :void
+    {
         
-        foreach($cookies as $cookieKey => $cookieValue){
+        foreach($cookies as $cookieKey){
             
             setcookie($cookieKey);                                                
             unset($_COOKIE[$cookieKey]);
@@ -18,8 +22,11 @@ class Cookie{
         
     }
     
-
-    public static function setCookies(array $cookies) :void{
+    /**
+     * create all cookies provided 
+     */ 
+    public static function setCookies(array $cookies) :void
+    {
         
         foreach($cookies as $cookieName => $cookieValue){
             // echo 'le '.$cookieName.' a pour valeur : '.$cookieValue.'<br>';
@@ -33,8 +40,11 @@ class Cookie{
         
     }
         
-
-    public static function checkCookie(string $cookieName){
+    /**
+     * return existing cookies
+     */ 
+    public static function checkCookie(string $cookieName)
+    {
         
         if(array_key_exists($cookieName,$_COOKIE)){
             
@@ -48,9 +58,12 @@ class Cookie{
         
     }
     
-    
-    public static function encrypt(string $data) {
-        $key = "12345678";  // Clé de 8 caractères max
+    /**
+     * deprecated method that crypt data, use decrypt to decrypt 
+     */ 
+    public static function encrypt(string $data) 
+    {
+        $key = "12345678";  
         $data = serialize($data);
         $td = mcrypt_module_open(MCRYPT_DES, "", MCRYPT_MODE_ECB, "");
         $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
@@ -60,7 +73,12 @@ class Cookie{
         return $data;
     }
  
-    public static function decrypt(string $data) {
+
+    /**
+     * deprecated method that decrypt data crypted by encrypt method 
+     */ 
+    public static function decrypt(string $data) 
+    {
         $key = '12345678';
         $td = mcrypt_module_open(MCRYPT_DES, "", MCRYPT_MODE_ECB, "");
         $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
@@ -74,7 +92,6 @@ class Cookie{
         $data = substr($data, 1, strlen($data) - 1);
         return unserialize($data);
     }
-    
     
     
 }

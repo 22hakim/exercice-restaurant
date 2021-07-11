@@ -2,16 +2,28 @@
 
 namespace App\core;
 
+
+/**
+ * Method using $_SESSION
+ */ 
 class Session {
     
-    public static function deconnect(){
+    /**
+     * destroy Session when user logout
+     */ 
+    public static function deconnect()
+    {
         
         session_start();
         session_destroy();
         
     }
     
-    public static function setUserSession(array $sessions):void{ 
+    /**
+     * set Session for user
+     */ 
+    public static function setUserSession(array $sessions):void
+    { 
         
         foreach($sessions as $sessionKey => $sessionValue){
 
@@ -22,31 +34,24 @@ class Session {
         
     }
     
-    public static function checkInput($data){
+    /**
+     * encode int and string
+     */ 
+    public static function checkInput($data)
+    {
 
-        if(is_numeric($data)){
+         return (is_numeric($data)) ? intval($data) : htmlspecialchars($data);
 
-            return intval($data);
-            
-        }else{
-            
-            return htmlspecialchars($data);
-            
-        }
     }
     
-    public static function online() :bool {
+    /**
+     * check if user is online
+     */  
+    public static function online() :bool 
+    {
         
-        // verifie qu'une personne est connectée 
-        if (array_key_exists('user', $_SESSION)) {
-            
-            return true;
-            
-        }else {
-        // return soit true soit false 
-            return false;
-        }
-        
+        return (array_key_exists('user', $_SESSION));
+  
     }
     
 

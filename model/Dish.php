@@ -5,29 +5,33 @@ namespace App\model;
 use App\core\Connect;
 
 
-class Dish extends Connect {
+class Dish extends Connect 
+{
     
     protected $_pdo;
     
-    
-    public function __construct(){
+    public function __construct()
+    {
         
         $this->_pdo = $this->connexion();
     }
     
-    /* récupere tout les produits */
+    /**
+     * fetching all Dishes
+     */
     public function recupAll(){
         
         $sql = "SELECT `id`, `name`, `description`, `price`, `picture`, `category`, `date_creation`, `sold`       FROM `main_dish`";
         $query = $this->_pdo->prepare($sql);
         $query->execute();
         return $query->fetchAll(\PDO::FETCH_ASSOC); 
-        
-        
+          
     }
 
 
-    /* récupere tout les produits selon la catégorie */
+    /**
+     * fetching dishes by category 
+     */
     public function recupDishByCategory(string $category){
         
         $sql = "SELECT `id`, `name`, `description`, `price`, `picture`, `category`, `date_creation`, `sold`       FROM `main_dish`
@@ -38,7 +42,6 @@ class Dish extends Connect {
             ]);
         return $query->fetchAll(\PDO::FETCH_ASSOC); 
 
-        
     }
     
     

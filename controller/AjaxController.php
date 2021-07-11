@@ -4,27 +4,40 @@ namespace App\controller;
 
 use App\model\{Dish,OrderDetails};
 
+/**
+ * Managing all Ajax request 
+ */
+class AjaxController
+{
+    
+    /**
+     * fetching all dishes in Json format 
+     */   
+    public static function allDish()
+    {
 
-class AjaxController{
-    
-    
-    // fetch('index.php?ajax=allDish').then(res => res.json()).then(data => console.log(data))
-    public static function allDish(){
-        // façon ou je recupere le code en json
         $dish = new Dish();
         echo json_encode($dish->recupAll());
         
     }
     
-    public static function allDishHtml(){
-        // façon ou je recupere le code en json
+    /**
+     * fetching all dishes in Html format 
+     */     
+    public static function allDishHtml()
+    {
+
         $dish = new Dish();
         $dishes = $dish->recupAll();
         require './views/menus/part/allDish.php';
         
     }
     
-    public static function meatDish(){
+    /**
+     * fetching meat dishes 
+     */   
+    public static function meatDish()
+    {
         
         $dish = new Dish();
         $dishes = $dish->recupDishByCategory('meat');
@@ -32,7 +45,11 @@ class AjaxController{
         
     }
 
-    public static function veganDish(){
+    /**
+     * fetching vegan dishes 
+     */   
+    public static function veganDish()
+    {
         
         $dish = new Dish();
         $dishes = $dish->recupDishByCategory('vegan');
@@ -40,7 +57,11 @@ class AjaxController{
         
     }
 
-    public static function fishDish(){
+    /**
+     * fetching fish dishes 
+     */   
+    public static function fishDish()
+    {
         
         $dish = new Dish();
         $dishes = $dish->recupDishByCategory('fish');
@@ -48,9 +69,12 @@ class AjaxController{
         
     }
     
-    public static function saveOrderlines(){
+    /**
+     * save OrderLines
+     */  
+    public static function saveOrderlines($datas)
+    {
         $datas = $_POST;
-        // echo json_encode($datas);
         $orderDetails = new OrderDetails();
         $response = $orderDetails->addOrderDetail($datas);
         echo json_encode($response);
@@ -58,5 +82,4 @@ class AjaxController{
     }
     
     
-
 }

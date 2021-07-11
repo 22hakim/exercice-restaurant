@@ -3,8 +3,10 @@
 namespace App\model;
 
 use App\core\Connect;
+use \PDO;
 
-class User extends Connect{
+class User extends Connect
+{
 
     protected $_pdo;
     
@@ -14,15 +16,18 @@ class User extends Connect{
         $this->_pdo = $this->connexion();
     }
     
-    
-    public function addUser($login,$password,$mail){
+    /**
+     * add user in DB
+     */
+    public function addUser(string $login, string $password, string $mail)
+    {
         
-        
-        $password = password_hash($password, PASSWORD_DEFAULT); // je hash mon mot de passe 
+        $password = password_hash($password, PASSWORD_DEFAULT); 
         
         $sql = "INSERT INTO `user`( `login`, `password`, `email`) 
                 VALUES (:login,:password,:email)";
         $query = $this->_pdo->prepare($sql);
+
         $query->execute([
                 ':login' => $login,
                 ':password' => $password,
@@ -31,16 +36,18 @@ class User extends Connect{
         
     }
     
-
-
-    public function recupUserByMail($mail){
+    /**
+     * fetch user by mail 
+     */
+    public function recupUserByMail(string $mail)
+    {
         
         $sql = "SELECT `id`, `login`, `password`, `email`, `creation_date` FROM `user` WHERE email = :mail";
         $query = $this->_pdo->prepare($sql);
         $query->execute([
                 ':mail' => $mail,
             ]);
-        return $query->fetch(\PDO::FETCH_ASSOC); 
+        return $query->fetch(PDO::FETCH_ASSOC); 
         
     }
     

@@ -1,6 +1,6 @@
 <?php 
 
-use App\core\{Autoloader, Https };
+use App\core\Autoloader;
 use App\controller\{FrontController, AjaxController};
 
 session_start();
@@ -14,18 +14,19 @@ $routeur = new FrontController();
 if(isset($_GET['ajax'])):
 
     $methodAjax = $_GET['ajax'];
-    
-    //echo json_encode($_POST);
-    
-    
-    (method_exists( AjaxController::class, $methodAjax)) ? AjaxController::$methodAjax()  : $routeur->index() ;    
+        
+    (method_exists( AjaxController::class, $methodAjax)) 
+        ? AjaxController::$methodAjax()  
+        : $routeur->home() ;    
     
 
 elseif(isset($_GET['p'])):
 	
     $method = $_GET['p'];
     
-    (method_exists( FrontController::class, $method)) ? $routeur->$method()  : $routeur->index() ;
+    (method_exists( FrontController::class, $method)) 
+        ? $routeur->$method()  
+        : $routeur->home() ;
     
     
 else:
