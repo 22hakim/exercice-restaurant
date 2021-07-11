@@ -72,7 +72,7 @@ class AjaxController
     /**
      * save OrderLines
      */  
-    public static function saveOrderlines($datas)
+    public static function saveOrderlines()
     {
         $datas = $_POST;
         $orderDetails = new OrderDetails();

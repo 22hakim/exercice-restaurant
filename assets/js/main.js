@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
         
         if(event.target.matches('[data-delete-id]')){
-            // console.log(event.target);
             ProductClass.deleteProduct(event.target);
         }
         
         if(event.target.matches('#make-order-details')){
+            
             event.preventDefault()
             new Order('save-orderlines');
         }

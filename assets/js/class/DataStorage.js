@@ -3,19 +3,12 @@ export default class DataStorage {
 
     saveDataToDomStorage(name, data)
     {
-        // serialisation
-        const jsonData = JSON.stringify(data);
-        // envoi dans le local storage
-        window.localStorage.setItem(name, jsonData);
+        window.localStorage.setItem(name, JSON.stringify(data));
     }
 
     loadDataFromDomStorage(name)
     {
-        // recuperation localStorage
-        const jsonData = window.localStorage.getItem(name);
-    
-        // deserialisation
-        return JSON.parse(jsonData);
+        return JSON.parse(window.localStorage.getItem(name));
     }
 
 

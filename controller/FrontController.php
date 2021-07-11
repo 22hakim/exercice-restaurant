@@ -3,7 +3,7 @@
 namespace App\controller;
 
 use App\controller\{FormController,PaiementController};
-use App\model\{User, Dish, Dessert, Cocktail, Orders, OrderDetails};
+use App\model\{User, Dessert, Cocktail, Orders, OrderDetails};
 use App\core\{Session, Cookie, Https};
 
 
@@ -11,6 +11,7 @@ use App\core\{Session, Cookie, Https};
  * Managing all pages
  */
 class FrontController{
+    
     
     /**
      * Home page

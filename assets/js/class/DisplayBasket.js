@@ -4,38 +4,28 @@ export default class DisplayBasket {
     
     constructor(page = 'basket'){
         
-        // récuperation de la classe qui contient le panier
         this.basket         = new Basket();
-        this.panier         = this.basket.loadBasket(); // mon panier 
-        
-        // récuperation des elements de la page du panier 
+        this.panier         = this.basket.loadBasket();
         this.emptyBasket    = document.querySelector('#emptycard');
         this.filledBasket   = document.querySelector('#filledcard');
-        
-        // lancement des verifications
         this.verif(page);
-        
     }
     
     verif(page){
         
-        if(page == 'order'){
-            this.displayBasket('order');
-            return;
-        }
+        if(page == 'order')
+            return this.displayBasket('order');
+
         
-        // verifie l'etat du panier.
+
         const panier = this.panier
         
-        // s'il est vide appel displayEmptyBasket
+
         if(panier.length == 0){
             this.displayEmptyBasket();
-            
-        // si au moins un produit appel displayBasket
+        
         }else{
-            
             this.displayBasket('basket')
-            
         }
         
     }
@@ -44,9 +34,7 @@ export default class DisplayBasket {
     createTag(tagHtml, content = null){
         
         const tag = document.createElement(tagHtml);
-        tag.textContent = content
-        
-        return tag;
+        return tag.textContent = content;
         
     }
     
@@ -66,8 +54,6 @@ export default class DisplayBasket {
         document.querySelector('#tbody-shop').innerHTML = '';
         
         for(const item of this.panier){
-            // console.log(item) // id: "3" name: "Freshly kebabs" price: 15 quantity: 1
-            // console.log(item.name)
             
             const tr = this.createTag('tr');
             const td1= this.createTag('td',item.name);
@@ -79,14 +65,13 @@ export default class DisplayBasket {
             tr.append(td1,td2,td3,td4);
             
             if(document.querySelector('.suppr')){
-                // je rajoute la case supprimer
+                
                 const td5       = this.createTag('td');
                 td5.style.textAlign = 'center';
                 const hyperText = this.createTag('a', 'supprimer');
                 hyperText.href = '#'
                 hyperText.dataset.deleteId = item.id;
                 
-
                 td5.append(hyperText);
                 tr.append(td5)
             }
@@ -95,7 +80,7 @@ export default class DisplayBasket {
             
         }
         
-        this.displayAmount() // affiche le prix final 
+        this.displayAmount();
         
     }
     
@@ -104,15 +89,13 @@ export default class DisplayBasket {
         
         this.emptyBasket.style.display      = 'block';
         this.filledBasket.style.display     = 'none';
-        
         this.emptyBasket.innerHTML = `<p>Aucun produit dans le panier pour le moment</p>`
-
-
+        
     }
     
     displayAmount(){
-        const shoppingCart = this.panier;
         
+        const shoppingCart = this.panier;
         let totalAmount = 0.0;
         
         for(const item of shoppingCart){

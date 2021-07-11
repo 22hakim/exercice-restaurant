@@ -13,9 +13,7 @@ export default class Basket {
     {
         let shoppingCart = this.basket.loadDataFromDomStorage('panier');
 
-        if (shoppingCart == null){  
-            shoppingCart = [];  
-        }
+        if (shoppingCart == null)   shoppingCart = [];  
 
         return shoppingCart;
     }
@@ -27,7 +25,7 @@ export default class Basket {
 
     clearBasket()
     {
-        localStorage.clear();
+        window.localStorage.clear();
         
     }
 
