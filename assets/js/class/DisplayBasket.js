@@ -16,8 +16,6 @@ export default class DisplayBasket {
         if(page == 'order')
             return this.displayBasket('order');
 
-        
-
         const panier = this.panier
         
 
@@ -34,7 +32,9 @@ export default class DisplayBasket {
     createTag(tagHtml, content = null){
         
         const tag = document.createElement(tagHtml);
-        return tag.textContent = content;
+        tag.textContent = content
+        
+        return tag;
         
     }
     

@@ -8,11 +8,9 @@ session_start();
 require_once './core/Autoloader.php';
 
 Autoloader::register();
+
 $routeur = new FrontController();
 
-/**
- * Manage Ajax requests
- */
 if(isset($_GET['ajax'])):
 
     $methodAjax = $_GET['ajax'];
@@ -21,9 +19,7 @@ if(isset($_GET['ajax'])):
         ? AjaxController::$methodAjax()  
         : $routeur->home() ;    
     
-/**
- * Manage routeur requests
- */
+
 elseif(isset($_GET['p'])):
 	
     $method = $_GET['p'];

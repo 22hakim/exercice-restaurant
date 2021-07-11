@@ -5,6 +5,7 @@ import Basket from './class/Basket.js';
 import DisplayBasket from './class/DisplayBasket.js';
 import Order from './class/Order.js';
 import Paiement from './class/Paiement.js';
+import Slider from './class/Slider.js';
 
 const ProductClass = new Product();
 const ModalClass = new Modal();
@@ -17,6 +18,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     /* Menu */
     if(document.querySelector('.choice')) 
         new Filter('all')
+
+    /* Slider */
+    if(document.querySelector('.slider')) 
+        new Slider()
         
     /* Basket */
     ProductClass.refreshBasketIcon();

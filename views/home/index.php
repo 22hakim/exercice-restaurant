@@ -1,7 +1,5 @@
 <div class="slider">
 	<div><img src="assets/img/slider-01.jpg" alt="Table seen from the top with drinks and plates with food"></div>
-	<div><img src="assets/img/slider-02.jpg" alt="Zoom on a plate seen from the top and red chilli"></div>
-	<div><img src="assets/img/slider-03.jpg" alt="Table seen from the top with drinks and plates with food"></div>
 </div> <!-- end of .slider -->
 <section class="intro">
 	<h1>Welcome to Freshly Restaurant</h1>
