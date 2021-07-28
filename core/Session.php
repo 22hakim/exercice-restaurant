@@ -53,6 +53,15 @@ class Session {
         return (array_key_exists('user', $_SESSION));
   
     }
+
+    /**
+     * check if user is online
+     */  
+    public static function addFlash(string $state, string $flashMessage) :array 
+    {
+        return $_SESSION['flash'] = [$state => $flashMessage];
+  
+    }
     
 
 }
